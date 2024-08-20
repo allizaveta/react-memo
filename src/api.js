@@ -10,13 +10,14 @@ export async function getLeaders() {
   return data.leaders;
 }
 
-export async function addLeader({ name, time }) {
+export async function addLeader({ id, name, time }) {
   const response = await fetch(URL, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
+      id,
       name,
       time,
     }),
