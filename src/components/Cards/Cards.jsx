@@ -241,9 +241,9 @@ export function Cards({ pairsCount = 3, previewSeconds = 5 }) {
           )}
         </div>
         {status === STATUS_IN_PROGRESS ? (
-          <div>
-            {isLight && <p className={styles.tries}>Осталось попыток {tries}</p>}
+          <div className="tries">
             <Button onClick={resetGame}>Начать заново</Button>
+            {isLight && <p className={styles.tries}>Осталось попыток: {tries}</p>}
           </div>
         ) : null}
       </div>
