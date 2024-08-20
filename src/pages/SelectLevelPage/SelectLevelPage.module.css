@@ -62,3 +62,45 @@
 .levelLink:visited {
   color: #0080c1;
 }
+
+.checkbox {
+  position: relative;
+  width: 24px;
+  height: 13px;
+  border-radius: 100px;
+  background: #0080c1;
+  outline: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 1px;
+    left: 1px;
+    width: 11px;
+    height: 11px;
+    border-radius: 50%;
+    background-color: #fff;
+    transition: 0.5s;
+  }
+  &:checked::before {
+    left: 12px;
+    background: #fff;
+  }
+  &:checked {
+    background-color: #046d2c;
+  }
+}
+
+.checkboxLabel {
+  color: #004980;
+  text-align: center;
+  font-variant-numeric: lining-nums proportional-nums;
+  font-family: StratosSkyeng;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 48px;
+}
