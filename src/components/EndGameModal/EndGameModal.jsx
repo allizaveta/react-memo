@@ -2,7 +2,7 @@ import styles from "./EndGameModal.module.css";
 import { Button } from "../Button/Button";
 import deadImageUrl from "./images/dead.png";
 import celebrationImageUrl from "./images/celebration.png";
-import { addLeader } from "../../api";
+import { postLeader } from "../../api";
 import { useContext, useState } from "react";
 import { LightContext } from "../../context/easyMode";
 import { useNavigate } from "react-router-dom";
@@ -21,7 +21,7 @@ export function EndGameModal({ isWon, gameDurationSeconds, gameDurationMinutes, 
   const addUser = async e => {
     e.preventDefault();
     try {
-      await addLeader(addPlayer);
+      await postLeader(addPlayer);
       navigate("/leaderboard");
     } catch (error) {
       console.error("Ошибка при добавлении игрока:", error);

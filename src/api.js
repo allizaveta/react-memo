@@ -11,7 +11,7 @@ export async function getLeaders() {
 }
 
 export async function postLeader({ name, time }) {
-  const response = await fetch(baseHost, {
+  const response = await fetch(URL, {
     method: "POST",
     body: JSON.stringify({
       name: name,
