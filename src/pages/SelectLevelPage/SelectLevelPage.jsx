@@ -1,7 +1,10 @@
 import { Link } from "react-router-dom";
 import styles from "./SelectLevelPage.module.css";
+import { useContext } from "react";
+import { LightContext } from "../../context/easyMode";
 
 export function SelectLevelPage() {
+  const { isLight, setIsLight } = useContext(LightContext);
   return (
     <div className={styles.container}>
       <div className={styles.modal}>
@@ -23,6 +26,16 @@ export function SelectLevelPage() {
             </Link>
           </li>
         </ul>
+        <label className={styles.checkboxLabel}>
+          <input
+            type="checkbox"
+            className={styles.checkbox}
+            name="checkbox"
+            checked={isLight}
+            onChange={() => setIsLight(!isLight)}
+          />
+          Easy mode
+        </label>
       </div>
     </div>
   );
