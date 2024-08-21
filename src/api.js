@@ -10,22 +10,17 @@ export async function getLeaders() {
   return data.leaders;
 }
 
-export async function addLeader({ id, name, time }) {
-  const response = await fetch(URL, {
+export async function postLeader({ name, time }) {
+  const response = await fetch(baseHost, {
     method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
     body: JSON.stringify({
-      id,
-      name,
-      time,
+      name: name,
+      time: time,
     }),
   });
-
-  if (!response.ok) {
-    throw new Error("Ошибка!");
+  if (response.status === 400) {
+    throw new Error("Полученные данные не в формате JSON");
   }
   const data = await response.json();
-  return data.leaders;
+  return data;
 }

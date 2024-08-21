@@ -13,7 +13,6 @@ export function EndGameModal({ isWon, gameDurationSeconds, gameDurationMinutes, 
   const imgSrc = isWon ? celebrationImageUrl : deadImageUrl;
   const imgAlt = isWon ? "celebration emoji" : "dead emoji";
   const [addPlayer, setAddPlayer] = useState({
-    id: "",
     name: "",
     time: gameDurationSeconds.toString().padStart(2, "0"),
   });
