@@ -5,18 +5,37 @@ import { getLeaders } from "../../api";
 
 export function LeaderBoard() {
   const [leaders, setLeaders] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     const fetchLeaders = async () => {
       try {
         const data = await getLeaders();
-        setLeaders(data);
-      } catch (error) {
-        console.error("Ошибка при загрузке данных:", error);
+        if (Array.isArray(data)) {
+          const sortedLeaders = data.sort((a, b) => a.time - b.time);
+          setLeaders(sortedLeaders);
+        } else {
+          setError("Неверный формат данных");
+        }
+      } catch (err) {
+        console.error("Ошибка при загрузке данных:", err);
+        setError("Ошибка при загрузке данных");
+      } finally {
+        setLoading(false);
       }
     };
+
     fetchLeaders();
   }, []);
+
+  if (loading) {
+    return <p>Загрузка...</p>;
+  }
+
+  if (error) {
+    return <p>{error}</p>;
+  }
 
   return (
     <div>
@@ -26,20 +45,20 @@ export function LeaderBoard() {
           <button className={styles.btn}>Начать игру</button>
         </Link>
       </div>
-      <div className={styles.flex}>
-        <div className={styles.listHeader}>
+      <ul className={styles.flex}>
+        <li className={styles.listHeader}>
           <p className={styles.listHeaderText}>Позиция</p>
           <p className={styles.listHeaderText}>Пользователь</p>
           <p className={styles.listHeaderText}>Время</p>
-        </div>
+        </li>
         {leaders.map((leader, index) => (
-          <div key={index} className={styles.listHeader}>
+          <li key={leader.id || index} className={styles.listHeader}>
             <p className={styles.listText}>#{index + 1}</p>
             <p className={styles.listText}>{leader.name}</p>
             <p className={styles.listText}>{leader.time}</p>
-          </div>
+          </li>
         ))}
-      </div>
+      </ul>
     </div>
   );
 }
