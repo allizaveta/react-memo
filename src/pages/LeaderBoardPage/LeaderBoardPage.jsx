@@ -13,7 +13,7 @@ export function LeaderBoard() {
       try {
         const data = await getLeaders();
         if (Array.isArray(data)) {
-          const sortedLeaders = data.sort((a, b) => a.time - b.time);
+          const sortedLeaders = data.sort((a, b) => a.time - b.time).slice(0, 10);
           setLeaders(sortedLeaders);
         } else {
           setError("Неверный формат данных");
