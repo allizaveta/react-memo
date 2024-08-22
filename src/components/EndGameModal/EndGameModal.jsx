@@ -18,27 +18,20 @@ export function EndGameModal({ isWon, gameDurationSeconds, gameDurationMinutes, 
   });
   const navigate = useNavigate();
 
-  const addUser = async e => {
+  const handleLeaderboardRedirect = async e => {
     e.preventDefault();
-    try {
-      await postLeader(addPlayer);
-      navigate("/leaderboard");
-    } catch (error) {
-      console.error("Ошибка при добавлении игрока:", error);
+    if (isWon && !isLight) {
+      try {
+        await postLeader(addPlayer);
+      } catch (error) {
+        console.error("Ошибка при добавлении игрока:", error);
+      }
     }
+    navigate("/leaderboard");
   };
 
   return (
-    <form
-      onSubmit={
-        isWon && !isLight
-          ? addUser
-          : e => {
-              e.preventDefault();
-              navigate("/leaderboard");
-            }
-      }
-    >
+    <form>
       <div className={styles.modal}>
         <img className={styles.image} src={imgSrc} alt={imgAlt} />
         <h2 className={styles.title}>{title}</h2>
@@ -58,7 +51,7 @@ export function EndGameModal({ isWon, gameDurationSeconds, gameDurationMinutes, 
         <Button type="button" onClick={onClick}>
           Начать сначала
         </Button>
-        <button className={styles.btnLeaderBoard} type="submit">
+        <button className={styles.btnLeaderBoard} type="button" onClick={handleLeaderboardRedirect}>
           Перейти к лидерборду
         </button>
       </div>
