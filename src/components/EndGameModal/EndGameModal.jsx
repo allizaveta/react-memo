@@ -29,7 +29,12 @@ export function EndGameModal({ isWon, gameDurationSeconds, gameDurationMinutes, 
     }
     navigate("/leaderboard");
   };
-
+  const handleKeyDown = e => {
+    if (e.key === "Enter") {
+      e.preventDefault();
+      handleLeaderboardRedirect(e);
+    }
+  };
   return (
     <form>
       <div className={styles.modal}>
@@ -38,6 +43,7 @@ export function EndGameModal({ isWon, gameDurationSeconds, gameDurationMinutes, 
         {isWon && !isLight && (
           <input
             onChange={e => setAddPlayer({ ...addPlayer, name: e.target.value })}
+            onKeyDown={handleKeyDown}
             className={styles.input}
             placeholder="Пользователь"
             type="text"
