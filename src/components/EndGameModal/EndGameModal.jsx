@@ -6,10 +6,12 @@ import { postLeader } from "../../api";
 import { useContext, useState } from "react";
 import { LightContext } from "../../context/easyMode";
 import { useNavigate } from "react-router-dom";
+import { usePairsCount } from "../../context/PairsCountContext";
 
 export function EndGameModal({ isWon, gameDurationSeconds, gameDurationMinutes, onClick }) {
   const { isLight } = useContext(LightContext);
-  const title = isWon ? `${isLight ? "Вы выиграли" : "Вы попали на Лидерборд!"}` : "Вы проиграли!";
+  const { pairsCount } = usePairsCount();
+  const title = isWon ? (isLight || pairsCount < 9 ? "Вы выиграли" : "Вы попали на Лидерборд!") : "Вы проиграли!";
   const imgSrc = isWon ? celebrationImageUrl : deadImageUrl;
   const imgAlt = isWon ? "celebration emoji" : "dead emoji";
   const [addPlayer, setAddPlayer] = useState({
@@ -20,7 +22,7 @@ export function EndGameModal({ isWon, gameDurationSeconds, gameDurationMinutes, 
 
   const handleLeaderboardRedirect = async e => {
     e.preventDefault();
-    if (isWon && !isLight) {
+    if (isWon && !isLight && pairsCount >= 9) {
       try {
         await postLeader(addPlayer);
       } catch (error) {
@@ -40,7 +42,7 @@ export function EndGameModal({ isWon, gameDurationSeconds, gameDurationMinutes, 
       <div className={styles.modal}>
         <img className={styles.image} src={imgSrc} alt={imgAlt} />
         <h2 className={styles.title}>{title}</h2>
-        {isWon && !isLight && (
+        {isWon && !isLight && pairsCount >= 9 && (
           <input
             onChange={e => setAddPlayer({ ...addPlayer, name: e.target.value })}
             onKeyDown={handleKeyDown}
