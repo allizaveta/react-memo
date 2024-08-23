@@ -11,7 +11,7 @@ import { usePairsCount } from "../../context/PairsCountContext";
 export function EndGameModal({ isWon, gameDurationSeconds, gameDurationMinutes, onClick }) {
   const { isLight } = useContext(LightContext);
   const { pairsCount } = usePairsCount();
-  const [isInTopTen, setIsInTopTen] = useState(false);
+  const [shouldAddToLeaderboard, setShouldAddToLeaderboard] = useState(false);
   const [addPlayer, setAddPlayer] = useState({
     name: "",
     time: gameDurationSeconds.toString().padStart(2, "0"),
@@ -27,10 +27,10 @@ export function EndGameModal({ isWon, gameDurationSeconds, gameDurationMinutes, 
             const sortedLeaders = leaders.sort((a, b) => a.time - b.time);
             const slowestTimeInTopTen = sortedLeaders[9].time;
             if (gameDurationSeconds < slowestTimeInTopTen) {
-              setIsInTopTen(true);
+              setShouldAddToLeaderboard(true);
             }
           } else {
-            setIsInTopTen(true);
+            setShouldAddToLeaderboard(true);
           }
         } catch (error) {
           console.error("Ошибка при проверке лидерборда:", error);
@@ -40,14 +40,18 @@ export function EndGameModal({ isWon, gameDurationSeconds, gameDurationMinutes, 
     }
   }, [isWon, isLight, pairsCount, gameDurationSeconds]);
 
-  const title = isWon ? (isInTopTen ? "Поздравляю, вы попали в Лидерборд!" : "Вы выиграли") : "Вы проиграли!";
+  const title = isWon
+    ? shouldAddToLeaderboard
+      ? "Поздравляю, вы попали в Лидерборд!"
+      : "Вы выиграли!"
+    : "Вы проиграли!";
 
   const imgSrc = isWon ? celebrationImageUrl : deadImageUrl;
   const imgAlt = isWon ? "celebration emoji" : "dead emoji";
 
   const handleLeaderboardRedirect = async e => {
     e.preventDefault();
-    if (isWon && isInTopTen) {
+    if (isWon && shouldAddToLeaderboard) {
       try {
         await postLeader(addPlayer);
       } catch (error) {
@@ -69,7 +73,7 @@ export function EndGameModal({ isWon, gameDurationSeconds, gameDurationMinutes, 
       <div className={styles.modal}>
         <img className={styles.image} src={imgSrc} alt={imgAlt} />
         <h2 className={styles.title}>{title}</h2>
-        {isWon && isInTopTen && (
+        {shouldAddToLeaderboard && (
           <input
             onChange={e => setAddPlayer({ ...addPlayer, name: e.target.value })}
             onKeyDown={handleKeyDown}
