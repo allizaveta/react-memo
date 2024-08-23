@@ -8,13 +8,13 @@ import { LightContext } from "../../context/easyMode";
 import { useNavigate } from "react-router-dom";
 import { usePairsCount } from "../../context/PairsCountContext";
 
-export function EndGameModal({ isWon, gameDurationSeconds, gameDurationMinutes, onClick }) {
+export function EndGameModal({ isWon, gameDurationSeconds, onClick }) {
   const { isLight } = useContext(LightContext);
   const { pairsCount } = usePairsCount();
   const [shouldAddToLeaderboard, setShouldAddToLeaderboard] = useState(false);
   const [addPlayer, setAddPlayer] = useState({
     name: "",
-    time: `${gameDurationMinutes.toString().padStart(2, "0")}:${gameDurationSeconds.toString().padStart(2, "0")}`,
+    time: gameDurationSeconds,
   });
   const navigate = useNavigate();
 
@@ -24,9 +24,9 @@ export function EndGameModal({ isWon, gameDurationSeconds, gameDurationMinutes, 
         try {
           const leaders = await getLeaders();
           if (Array.isArray(leaders) && leaders.length >= 10) {
-            const sortedLeaders = leaders.sort((a, b) => a.time.localeCompare(b.time));
+            const sortedLeaders = leaders.sort((a, b) => a.time - b.time);
             const slowestTimeInTopTen = sortedLeaders[9].time;
-            if (addPlayer.time.localeCompare(slowestTimeInTopTen) < 0) {
+            if (addPlayer.time < slowestTimeInTopTen) {
               setShouldAddToLeaderboard(true);
             }
           } else {
@@ -85,7 +85,9 @@ export function EndGameModal({ isWon, gameDurationSeconds, gameDurationMinutes, 
         )}
         <p className={styles.description}>Затраченное время:</p>
         <div className={styles.time}>
-          {gameDurationMinutes.toString().padStart(2, "0")}.{gameDurationSeconds.toString().padStart(2, "0")}
+          {`${Math.floor(gameDurationSeconds / 60)
+            .toString()
+            .padStart(2, "0")}:${(gameDurationSeconds % 60).toString().padStart(2, "0")}`}
         </div>
         <Button type="button" onClick={onClick}>
           Начать сначала
