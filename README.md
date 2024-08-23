@@ -50,4 +50,4 @@ https://skypro-web-developer.github.io/react-memo/
 20 часов
 
 ### Фактическое время выполнения
-4 + 2
+13ч
