@@ -3,6 +3,12 @@ import { Link } from "react-router-dom";
 import styles from "../LeaderBoardPage/LeaderBoardPage.module.css";
 import { getLeaders } from "../../api";
 
+function formatTime(seconds) {
+  const minutes = Math.floor(seconds / 60);
+  const remainingSeconds = seconds % 60;
+  return `${minutes.toString().padStart(2, "0")}:${remainingSeconds.toString().padStart(2, "0")}`;
+}
+
 export function LeaderBoard() {
   const [leaders, setLeaders] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -55,7 +61,7 @@ export function LeaderBoard() {
           <li key={leader.id || index} className={styles.listHeader}>
             <p className={styles.listText}>#{index + 1}</p>
             <p className={styles.listText}>{leader.name}</p>
-            <p className={styles.listText}>{leader.time}</p>
+            <p className={styles.listText}>{formatTime(leader.time)}</p> {}
           </li>
         ))}
       </ul>
