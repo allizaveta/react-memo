@@ -14,7 +14,7 @@ export function EndGameModal({ isWon, gameDurationSeconds, gameDurationMinutes, 
   const [shouldAddToLeaderboard, setShouldAddToLeaderboard] = useState(false);
   const [addPlayer, setAddPlayer] = useState({
     name: "",
-    time: gameDurationSeconds.toString().padStart(2, "0"),
+    time: `${gameDurationMinutes.toString().padStart(2, "0")}:${gameDurationSeconds.toString().padStart(2, "0")}`,
   });
   const navigate = useNavigate();
 
@@ -24,9 +24,9 @@ export function EndGameModal({ isWon, gameDurationSeconds, gameDurationMinutes, 
         try {
           const leaders = await getLeaders();
           if (Array.isArray(leaders) && leaders.length >= 10) {
-            const sortedLeaders = leaders.sort((a, b) => a.time - b.time);
+            const sortedLeaders = leaders.sort((a, b) => a.time.localeCompare(b.time));
             const slowestTimeInTopTen = sortedLeaders[9].time;
-            if (gameDurationSeconds < slowestTimeInTopTen) {
+            if (addPlayer.time.localeCompare(slowestTimeInTopTen) < 0) {
               setShouldAddToLeaderboard(true);
             }
           } else {
@@ -38,7 +38,7 @@ export function EndGameModal({ isWon, gameDurationSeconds, gameDurationMinutes, 
       };
       checkLeaderboard();
     }
-  }, [isWon, isLight, pairsCount, gameDurationSeconds]);
+  }, [isWon, isLight, pairsCount, addPlayer.time]);
 
   const title = isWon
     ? shouldAddToLeaderboard
