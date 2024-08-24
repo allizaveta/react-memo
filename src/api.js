@@ -1,4 +1,4 @@
-const URL = "https://wedev-api.sky.pro/api/leaderboard";
+const URL = "https://wedev-api.sky.pro/api/v2/leaderboard";
 
 export async function getLeaders() {
   const response = await fetch(URL);
@@ -7,12 +7,13 @@ export async function getLeaders() {
     throw new Error("Ошибка");
   }
   const data = await response.json();
+  console.log(data.leaders);
   return data.leaders;
 }
 
 export async function postLeader(data) {
   try {
-    const response = await fetch("https://wedev-api.sky.pro/api/leaderboard", {
+    const response = await fetch("https://wedev-api.sky.pro/api/v2/leaderboard", {
       method: "POST",
       body: JSON.stringify(data),
     });

@@ -82,8 +82,29 @@
   border-radius: 50px;
   border: none;
   margin-left: 70px;
+  position: relative;
 }
 
 .superpower:hover{
   background-color:#92c3cd;
+}
+
+.superPowerTooltip {
+  position: absolute;
+  width: 222px;
+  height: 223px;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  gap: 0px;
+  border-radius: 12px 0 0 0;
+  background: #f0f0f0;
+  display: none;
+  transition: opacity 0.3s ease, top 0.3s ease;
+  z-index: 1000;
+}
+
+.superpower:hover .superPowerTooltip {
+  display: inline;
+  top: calc(100% + 5px);
 }
