@@ -81,11 +81,13 @@ export function EndGameModal({ isWon, gameDurationSeconds, onClick }) {
             placeholder="Введите имя"
             type="text"
             value={addPlayer.name}
-          />
+          ></input>
         )}
-        <button className={styles.btn} type="button" onClick={handleLeaderboardRedirect}>
-          Отправить
-        </button>
+        {shouldAddToLeaderboard && (
+          <button className={styles.btn} type="button" onClick={handleLeaderboardRedirect}>
+            Отправить
+          </button>
+        )}
         <p className={styles.description}>Затраченное время:</p>
         <div className={styles.time}>
           {`${Math.floor(gameDurationSeconds / 60)
