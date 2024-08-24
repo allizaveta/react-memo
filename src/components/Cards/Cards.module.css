@@ -74,3 +74,16 @@
   color: #fff;
   margin-left: 50px;
 }
+
+.superpower{
+  background-color:#C2F5FF;
+  width: 68px;
+  height: 68px;
+  border-radius: 50px;
+  border: none;
+  margin-left: 70px;
+}
+
+.superpower:hover{
+  background-color:#92c3cd;
+}
