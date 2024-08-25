@@ -248,14 +248,7 @@ export function Cards({ pairsCount = 3, previewSeconds = 5 }) {
               <div className={styles.superPowerContainer}>
                 <button className={styles.superpower} onClick={superPowerEye}>
                   {superPowerUsed ? (
-                    <svg
-                      className={styles.svg}
-                      width={60}
-                      height={36}
-                      viewBox="0 0 60 36"
-                      fill="none"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
+                    <svg width={60} height={36} viewBox="0 0 60 36" fill="none" xmlns="http://www.w3.org/2000/svg">
                       <path
                         d="M2.06365 19.2703L2.06519 19.273C7.81667 29.1958 18.5591 35.3889 30 35.3889C41.4394 35.3889 52.1832 29.2593 57.9355 19.2718L57.9363 19.2703L58.4341 18.3992L58.5759 18.1511L58.4341 17.903L57.9364 17.0319L57.9348 17.0293C52.1833 7.10638 41.4409 0.91333 30 0.91333C18.5591 0.91333 7.81667 7.10638 2.06519 17.0293L2.06518 17.0293L2.06366 17.0319L1.56588 17.903L1.42412 18.1511L1.56588 18.3992L2.06366 19.2703L2.06365 19.2703Z"
                         fill="white"
@@ -335,14 +328,7 @@ export function Cards({ pairsCount = 3, previewSeconds = 5 }) {
                       </defs>
                     </svg>
                   ) : (
-                    <svg
-                      className={styles.svg}
-                      width={60}
-                      height={36}
-                      viewBox="0 0 60 36"
-                      fill="none"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
+                    <svg width={60} height={36} viewBox="0 0 60 36" fill="none" xmlns="http://www.w3.org/2000/svg">
                       <path
                         d="M2.06365 19.2703L2.06519 19.273C7.81667 29.1958 18.5591 35.3889 30 35.3889C41.4394 35.3889 52.1832 29.2593 57.9355 19.2718L57.9363 19.2703L58.4341 18.3992L58.5759 18.1511L58.4341 17.903L57.9364 17.0319L57.9348 17.0293C52.1833 7.10638 41.4409 0.91333 30 0.91333C18.5591 0.91333 7.81667 7.10638 2.06519 17.0293L2.06518 17.0293L2.06366 17.0319L1.56588 17.903L1.42412 18.1511L1.56588 18.3992L2.06366 19.2703L2.06365 19.2703Z"
                         fill="white"
