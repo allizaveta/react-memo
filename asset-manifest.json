@@ -1,23 +1,27 @@
 {
   "files": {
-    "main.css": "/react-memo/static/css/main.60c15ae6.css",
-    "main.js": "/react-memo/static/js/main.65e488e0.js",
+    "main.css": "/react-memo/static/css/main.2953011e.css",
+    "main.js": "/react-memo/static/js/main.a89ec440.js",
     "static/media/Roboto-Regular.woff2": "/react-memo/static/media/Roboto-Regular.a25806274237d06e00a6.woff2",
     "static/media/StratosSkyeng.woff2": "/react-memo/static/media/StratosSkyeng.ce93393e831d32412096.woff2",
     "static/media/Poppins-Regular.woff2": "/react-memo/static/media/Poppins-Regular.5a6c15af2151cfa27e76.woff2",
     "static/media/celebration.png": "/react-memo/static/media/celebration.2577e3c3835ac1f32429.png",
     "static/media/dead.png": "/react-memo/static/media/dead.bfb3f81b5110f1b62252.png",
+    "static/media/emptyMagicBall.svg": "/react-memo/static/media/emptyMagicBall.2e81b2ac0ddffb211940129a29186669.svg",
+    "static/media/emptyPuzzle.svg": "/react-memo/static/media/emptyPuzzle.ac8dd8c900899ec97af4af99e2504c80.svg",
+    "static/media/puzzle.svg": "/react-memo/static/media/puzzle.ee3fdc4f4cb51ca62d7ed460e9fc61d5.svg",
+    "static/media/magicBall.svg": "/react-memo/static/media/magicBall.b77bd2d48f4cf99b0fb6c4714fa9708f.svg",
     "static/media/сard-shirt.svg": "/react-memo/static/media/сard-shirt.ee1c021f7ee4ddc65293b8afcc81859d.svg",
     "static/media/cross.svg": "/react-memo/static/media/cross.a67a9b79b3c4428c4927895e6c820391.svg",
     "index.html": "/react-memo/index.html",
     "static/media/hearts.svg": "/react-memo/static/media/hearts.61a332d669720824455d75936096b657.svg",
     "static/media/spades.svg": "/react-memo/static/media/spades.d5657ff5be305701be575ad4403987f4.svg",
     "static/media/diamonds.svg": "/react-memo/static/media/diamonds.60153c09fb0fa0f9b5bab2a62d795342.svg",
-    "main.60c15ae6.css.map": "/react-memo/static/css/main.60c15ae6.css.map",
-    "main.65e488e0.js.map": "/react-memo/static/js/main.65e488e0.js.map"
+    "main.2953011e.css.map": "/react-memo/static/css/main.2953011e.css.map",
+    "main.a89ec440.js.map": "/react-memo/static/js/main.a89ec440.js.map"
   },
   "entrypoints": [
-    "static/css/main.60c15ae6.css",
-    "static/js/main.65e488e0.js"
+    "static/css/main.2953011e.css",
+    "static/js/main.a89ec440.js"
   ]
 }
