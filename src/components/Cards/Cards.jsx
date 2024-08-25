@@ -427,11 +427,11 @@ export function Cards({ pairsCount = 3, previewSeconds = 5 }) {
                 </button>
                 <div className={styles.tooltipContainer}>
                   <p className={styles.tooltip}>
-                    <sep className={styles.tooltipHeader}>Прозрение </sep>
-                    <sep className={styles.tooltipText}>
+                    <span className={styles.tooltipHeader}>Прозрение </span>
+                    <span className={styles.tooltipText}>
                       <br></br>На 5 секунд<br></br>показываются все<br></br>карты. Таймер<br></br>длительности игры
                       <br></br>на этовремя<br></br>останавливается.
-                    </sep>
+                    </span>
                   </p>
                 </div>
               </div>
