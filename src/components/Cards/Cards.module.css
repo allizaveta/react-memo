@@ -92,39 +92,32 @@
 .superPowerContainer {
   display: block;
   z-index: 1;
-}
-
-.superPowerWrapper {
-  position: relative;
+  width:68px;
+  height:68px;
+  border-radius: 50px;
 }
 
 .tooltipContainer{
   position: absolute;
   visibility: hidden;
 }
+
 .tooltip {
   background-color: #C2F5FF;
-  color: #004980;
-  top: 10px;
   border-radius: 12px;
-  width: 222px;
-  height: 223px;
-  font-family: Inter;
+  padding: 25px;
   font-size: 18px;
   font-weight: 400;
   line-height: 24px;
+  font-family: Inter;
   text-align: center;
+  color: #004980;
 }
 
 .tooltipHeader{
-  top: 25px;
   text-align: center;
   color: #004980;
   font-weight: 700;
-}
-
-.tooltip::after {
-  margin-top: 20px;
 }
 
 .superPowerContainer:hover .tooltip {
