@@ -5,21 +5,44 @@ import celebrationImageUrl from "./images/celebration.png";
 import { postLeader, getLeaders } from "../../api";
 import { useContext, useState, useEffect } from "react";
 import { LightContext } from "../../context/easyMode";
+import { SuperPowerContext } from "../../context/SuperPowerContext";
 import { useNavigate } from "react-router-dom";
 import { usePairsCount } from "../../context/PairsCountContext";
 
 export function EndGameModal({ isWon, gameDurationSeconds, onClick }) {
+  const { superPowerUsed } = useContext(SuperPowerContext);
   const { isLight } = useContext(LightContext);
   const { pairsCount } = usePairsCount();
   const [shouldAddToLeaderboard, setShouldAddToLeaderboard] = useState(false);
   const [addPlayer, setAddPlayer] = useState({
     name: "",
     time: gameDurationSeconds,
+    achievement: [],
   });
+
   const navigate = useNavigate();
 
+  const setAchivement = () => {
+    let achievement = [];
+    if (!isLight && !superPowerUsed) {
+      achievement = [1, 2];
+    } else if (!isLight) {
+      achievement = [1];
+    } else if (!superPowerUsed) {
+      achievement = [2];
+    } else {
+      achievement = [];
+    }
+    return achievement;
+  };
+
   useEffect(() => {
-    if (isWon && !isLight && pairsCount >= 9) {
+    const achievement = setAchivement();
+    setAddPlayer(prev => ({ ...prev, achievement }));
+  }, [superPowerUsed, isLight]);
+
+  useEffect(() => {
+    if (isWon && pairsCount >= 9) {
       const checkLeaderboard = async () => {
         try {
           const leaders = await getLeaders();
@@ -38,7 +61,7 @@ export function EndGameModal({ isWon, gameDurationSeconds, onClick }) {
       };
       checkLeaderboard();
     }
-  }, [isWon, isLight, pairsCount, addPlayer.time]);
+  }, [isWon, pairsCount, addPlayer.time]);
 
   const title = isWon
     ? shouldAddToLeaderboard
@@ -52,10 +75,16 @@ export function EndGameModal({ isWon, gameDurationSeconds, onClick }) {
   const handleLeaderboardRedirect = async e => {
     e.preventDefault();
     if (isWon && shouldAddToLeaderboard) {
+      const data = {
+        name: addPlayer.name || "Пользователь",
+        time: addPlayer.time,
+        achievements: addPlayer.achievement || [],
+      };
+      console.log("Данные для отправки:", JSON.stringify(data, null, 2));
       try {
-        await postLeader(addPlayer);
+        await postLeader(data);
       } catch (error) {
-        console.error("Ошибка при добавлении игрока:", error);
+        console.error("Ошибка при добавлении игрока:", error.message);
       }
     }
     navigate("/leaderboard");
@@ -75,13 +104,13 @@ export function EndGameModal({ isWon, gameDurationSeconds, onClick }) {
         <h2 className={styles.title}>{title}</h2>
         {shouldAddToLeaderboard && (
           <input
-            onChange={e => setAddPlayer({ ...addPlayer, name: e.target.value })}
+            onChange={e => setAddPlayer(prev => ({ ...prev, name: e.target.value }))}
             onKeyDown={handleKeyDown}
             className={styles.input}
             placeholder="Введите имя"
             type="text"
             value={addPlayer.name}
-          ></input>
+          />
         )}
         {shouldAddToLeaderboard && (
           <button className={styles.btn} type="button" onClick={handleLeaderboardRedirect}>

@@ -26,10 +26,35 @@ function AchievementImages({ achievements }) {
     }
   }
 
+  const getAchievementText = index => {
+    switch (index) {
+      case 0:
+        return (
+          <>
+            Игра пройдена
+            <br />в сложном режиме
+          </>
+        );
+      case 1:
+        return (
+          <>
+            Игра пройдена
+            <br />
+            без супер-сил
+          </>
+        );
+      default:
+        return "Нет достижений";
+    }
+  };
+
   return (
-    <div className={styles.achievements}>
+    <div className={styles.achievementsContainer}>
       {imagesToShow.map((Src, index) => (
-        <img key={index} src={Src} className={styles.image} alt="Achievement" />
+        <div key={index} className={styles.achievementWrapper}>
+          <img src={Src} className={styles.image} alt="Achievement" />
+          <div className={styles.tooltip}>{getAchievementText(index)}</div>
+        </div>
       ))}
     </div>
   );
@@ -88,7 +113,7 @@ export function LeaderBoard() {
           <li key={leader.id || index} className={styles.listHeader}>
             <p className={styles.listText}>#{index + 1}</p>
             <p className={styles.listText}>{leader.name}</p>
-            <AchievementImages achievements={leader.achievements} />
+            <AchievementImages className={styles.achievements} achievements={leader.achievements} />
             <p className={styles.listText}>{formatTime(leader.time)}</p> {}
           </li>
         ))}

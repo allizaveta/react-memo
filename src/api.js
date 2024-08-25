@@ -13,13 +13,22 @@ export async function getLeaders() {
 
 export async function postLeader(data) {
   try {
+    const jsonData = JSON.stringify({
+      name: data.name || "Пользователь",
+      time: data.time,
+      achievements: data.achievements || [],
+    });
     const response = await fetch("https://wedev-api.sky.pro/api/v2/leaderboard", {
       method: "POST",
-      body: JSON.stringify(data),
+      headers: {},
+      body: jsonData,
     });
+
     if (!response.ok) {
-      throw new Error(`Ошибка: ${response.status}`);
+      const errorText = await response.text();
+      throw new Error(`Ошибка: ${response.status}. ${errorText}`);
     }
+
     return await response.json();
   } catch (error) {
     console.error("Ошибка при отправке данных:", error);

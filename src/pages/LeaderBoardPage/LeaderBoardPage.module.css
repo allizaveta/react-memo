@@ -79,3 +79,37 @@
   align-items: center;
   padding-bottom: 100px;
 }
+
+.achievementsContainer {
+  display: flex;
+  gap: 10px;
+}
+
+.achievementWrapper {
+  position: relative;
+}
+
+.image {
+  cursor: pointer;
+}
+
+.tooltip {
+  visibility: hidden;
+  background-color: #C2F5FF;
+  color: #004980;
+  text-align: center;
+  padding: 15px;
+  padding-left: 20px;
+  padding-right: 20px;
+  border-radius: 5px;
+  position: absolute;
+  z-index: 1;
+  bottom: 37px;
+  left: 50%;
+  transform: translateX(-50%);
+  white-space: nowrap;
+}
+
+.achievementWrapper:hover .tooltip {
+  visibility: visible;
+}
