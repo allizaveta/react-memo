@@ -9,14 +9,14 @@ import { SuperPowerContext } from "../../context/SuperPowerContext";
 import { useNavigate } from "react-router-dom";
 import { usePairsCount } from "../../context/PairsCountContext";
 
-export function EndGameModal({ isWon, gameDurationSeconds, onClick }) {
+export function EndGameModal({ isWon, gameDurationSeconds, gameDurationMinutes, onClick }) {
   const { superPowerUsed } = useContext(SuperPowerContext);
   const { isLight } = useContext(LightContext);
   const { pairsCount } = usePairsCount();
   const [shouldAddToLeaderboard, setShouldAddToLeaderboard] = useState(false);
   const [addPlayer, setAddPlayer] = useState({
     name: "",
-    time: gameDurationSeconds,
+    time: gameDurationSeconds + gameDurationMinutes * 60,
     achievement: [],
   });
 
@@ -119,9 +119,9 @@ export function EndGameModal({ isWon, gameDurationSeconds, onClick }) {
         )}
         <p className={styles.description}>Затраченное время:</p>
         <div className={styles.time}>
-          {`${Math.floor(gameDurationSeconds / 60)
+          {`${Math.floor((gameDurationSeconds + gameDurationMinutes * 60) / 60)
             .toString()
-            .padStart(2, "0")}:${(gameDurationSeconds % 60).toString().padStart(2, "0")}`}
+            .padStart(2, "0")}:${((gameDurationSeconds + gameDurationMinutes * 60) % 60).toString().padStart(2, "0")}`}
         </div>
         <Button type="button" onClick={onClick}>
           Начать сначала
