@@ -11,6 +11,7 @@
   flex-direction: row;
   gap: 10px;
   flex-wrap: wrap;
+  z-index: -2;
 }
 
 .modalContainer {
@@ -28,14 +29,13 @@
 .header {
   display: flex;
   justify-content: space-between;
-  align-items: end;
+  align-items: flex-end;
   margin-bottom: 35px;
 }
 
 .timer {
   display: flex;
-  align-items: end;
-
+  align-items: flex-end;
   color: #fff;
   font-family: StratosSkyeng;
   font-size: 64px;
@@ -69,4 +69,61 @@
   line-height: 32px;
 
   margin-bottom: -12px;
+}
+
+.tries {
+  color: #fff;
+  margin-left: 50px;
+}
+
+.superpower{
+  background-color:#C2F5FF;
+  width: 68px;
+  height: 68px;
+  border-radius: 50px;
+  border: none;
+  margin-left: 70px;
+  position: relative;
+  z-index: 1;
+}
+
+.superpower:hover{
+  background-color:#92c3cd;
+}
+
+.superPowerContainer {
+  display: block;
+  width:68px;
+  height:68px;
+  border-radius: 50px;
+  position: relative;
+  z-index: 1 !important;
+}
+
+.tooltipContainer{
+  position: absolute;
+  visibility: hidden;
+}
+
+.tooltip {
+  background-color: #C2F5FF;
+  border-radius: 12px;
+  padding: 25px;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 24px;
+  font-family: Inter;
+  text-align: center;
+  color: #004980;
+}
+
+.tooltipHeader{
+  text-align: center;
+  color: #004980;
+  font-weight: 700;
+}
+
+.superPowerContainer:hover .tooltip {
+  visibility: visible;
+  opacity: 1;
 }
