@@ -1,0 +1,80 @@
+@font-face {
+  font-family: "Roboto";
+  src: url("/public/assets/fonts/Roboto-Regular.woff2") format("woff2");
+  src: url("/public/assets/fonts/Poppins-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+}
+
+.header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  margin-top: 50px;
+}
+
+.title {
+  font-family: Roboto;
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 32px;
+  text-align: left;
+  color: #fff;
+}
+
+.btn {
+  width: 246px;
+  height: 50px;
+  border-radius: 12px;
+  border: none;
+  background-color: rgba(122, 193, 0, 1);
+  font-family: Roboto;
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 32px;
+  text-align: center;
+  color: #fff;
+  cursor: pointer;
+}
+
+.btn:hover {
+  background: #7ac100cc;
+}
+
+.listHeader {
+  width: 944px;
+  height: 64px;
+  border-radius: 15px;
+  background-color: #fff;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 40px;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.listHeaderText {
+  font-family: Poppins;
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 32px;
+  text-align: left;
+  color: rgba(153, 153, 153, 1);
+}
+
+.listText {
+  font-family: Poppins;
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 32px;
+  text-align: left;
+  color: rgba(0, 0, 0, 1);
+}
+
+.flex {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}

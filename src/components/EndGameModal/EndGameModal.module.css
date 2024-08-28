@@ -1,6 +1,6 @@
 .modal {
   width: 480px;
-  height: 459px;
+  height: 634px;
   border-radius: 12px;
   background: #c2f5ff;
   display: flex;
@@ -16,6 +16,7 @@
 }
 
 .title {
+  text-align: center;
   color: #004980;
   font-variant-numeric: lining-nums proportional-nums;
   font-family: StratosSkyeng;
@@ -48,4 +49,30 @@
   line-height: 72px;
 
   margin-bottom: 40px;
+}
+.input {
+  border-radius: 10px;
+  border: none;
+  margin-bottom: 30px;
+  width: 276px;
+  height: 45px;
+  text-align: center;
+}
+input::placeholder{
+  color: #999999;
+  font-weight: 400;
+  font-size: 24px;
+}
+
+.btnLeaderBoard{
+  padding-top: 20px;
+  background: none;
+  border: none;
+  text-decoration: underline;
+  cursor: pointer;
+  font-size: 18px;
+}
+.btnLeaderBoard:hover{
+  transform: scale(1.05);
+  color: rgb(113, 113, 255);
 }
